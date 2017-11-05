@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.gp.graphqlaggregator.graphql.alluseraccounts;
+package com.gp.graphqlaggregator.graphql.datafetcher;
 
 import java.util.List;
 import java.util.Map;

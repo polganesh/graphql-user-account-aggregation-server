@@ -13,6 +13,7 @@ type User {
     lastname: String!
     panid: String!
     accounts:[Account]
+    #externalAccounts:[Account]
 }
 
 type Account{

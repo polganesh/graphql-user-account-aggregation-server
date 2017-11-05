@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gp.graphqlaggregator.graphql.alluseraccounts.AllUserAccountsDataFetcher;
-import com.gp.graphqlaggregator.graphql.alluseraccounts.UserAccountByPANAndEntityDataFetcher;
+import com.gp.graphqlaggregator.graphql.datafetcher.AllUserAccountsDataFetcher;
+import com.gp.graphqlaggregator.graphql.datafetcher.UserAccountByPANAndEntityDataFetcher;
 
 import graphql.ExecutionResult;
 import graphql.GraphQL;
