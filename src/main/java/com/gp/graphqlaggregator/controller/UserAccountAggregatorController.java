@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import javax.annotation.PostConstruct;
 
-import org.apache.hadoop.hdfs.server.datanode.dataNodeHome_jsp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -16,19 +15,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gp.graphqlaggregator.graphql.datafetcher.AllUserAccountsDataFetcher;
+import com.gp.graphqlaggregator.graphql.datafetcher.ExternalAccountDataFetcher;
 import com.gp.graphqlaggregator.graphql.datafetcher.UserAccountByPANAndEntityDataFetcher;
 
 import graphql.ExecutionResult;
 import graphql.GraphQL;
-import graphql.language.TypeName;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
-import graphql.schema.idl.RuntimeWiring.Builder;
-import javafx.util.BuilderFactory;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
-//import graphql.schema.idl.TypeRuntimeWiring.Builder;
 import graphql.schema.idl.TypeRuntimeWiring;
 
 @RestController
@@ -43,6 +39,8 @@ public class UserAccountAggregatorController {
 	private AllUserAccountsDataFetcher allUserAccountsDataFetcher;
 	@Autowired
 	private UserAccountByPANAndEntityDataFetcher userAccountByPANAndEntityDataFetcher;
+	@Autowired
+	private ExternalAccountDataFetcher externalAccountDataFetcher;
 	
 	public UserAccountAggregatorController() {
 		// TODO Auto-generated constructor stub
@@ -62,8 +60,10 @@ public class UserAccountAggregatorController {
 		return RuntimeWiring.newRuntimeWiring().
 				type(	"Query", 
 						typeWiring->typeWiring.
-						dataFetcher("allUserAccounts", allUserAccountsDataFetcher).
 						dataFetcher("userAccountByPANAndEntity", userAccountByPANAndEntityDataFetcher)).
+				type("User",
+						extActWiringForPerson->extActWiringForPerson.
+						dataFetcher("externalAccounts", externalAccountDataFetcher)).
 				build();
 	}
 

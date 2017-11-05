@@ -3,7 +3,8 @@ schema {
 }
 
 type Query {
-	allUserAccounts: [User]
+	#commenting alluser accounts as it will give multiple calls
+	#allUserAccounts: [User]
 	userAccountByPANAndEntity(pan:String,entityid:Int):User
 }
 
@@ -13,7 +14,7 @@ type User {
     lastname: String!
     panid: String!
     accounts:[Account]
-    #externalAccounts:[Account]
+    externalAccounts:[Account]
 }
 
 type Account{
