@@ -1,0 +1,25 @@
+schema {
+    query: Query
+}
+
+type Query {
+	allUserAccounts: [User]
+	userAccountByPANAndEntity(pan:String,entityid:Int):User
+}
+
+type User {
+    entityid: ID!
+    firstname: String!
+    lastname: String!
+    panid: String!
+    accounts:[Account]
+}
+
+type Account{
+	accountId:ID!
+	accountCategory:String
+	accountName:String
+	accountNumber:String
+	accountType:String
+	currentMarketValue:Float
+}
